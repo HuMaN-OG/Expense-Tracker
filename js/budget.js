@@ -1,4 +1,4 @@
-const BASE_URL = CONFIG.API_URL;
+const BASE_URL = (typeof CONFIG !== 'undefined') ? CONFIG.API_URL : 'http://localhost:5000/api';
 
 document.addEventListener('DOMContentLoaded', () => {
   const token = localStorage.getItem('token');
