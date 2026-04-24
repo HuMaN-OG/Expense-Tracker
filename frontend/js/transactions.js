@@ -1,4 +1,4 @@
-const BASE_URL = CONFIG.API_URL;
+const BASE_URL = (typeof CONFIG !== 'undefined') ? CONFIG.API_URL : 'http://localhost:5000/api';
 let currentTransactions = [];
 
 document.addEventListener('DOMContentLoaded', () => {
