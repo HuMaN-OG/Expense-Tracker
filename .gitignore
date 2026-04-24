@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+dist/
+build/
+.npm
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs/Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Project Specific
+frontend/node_modules/
+backend/node_modules/

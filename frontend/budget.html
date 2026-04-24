@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="Set and track monthly category budgets. Visual progress bars help you stay within your limits and reach your savings goals.">
+  <meta name="keywords" content="budgeting app, category limits, save money, expense tracker budget, financial goals">
+  <meta name="view-transition" content="same-origin">
+  <title>Manage Budgets | ExpenseTracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💎</text></svg>">
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="bg-bg">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">ExpenseTracker</div>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html">Transactions</a>
+        <a href="budget.html" class="active">Budget</a>
+      </div>
+      <div class="nav-user">
+        <button id="theme-toggle"><span>☀️ Light</span></button>
+        <span id="user-greeting">Welcome!</span>
+        <button id="btn-logout" class="btn btn-outline btn-sm">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="flex-between mb-4">
+      <h2>Budget Planning</h2>
+      <input type="month" id="month-selector" class="input-light">
+    </div>
+
+    <div class="budget-grid">
+      <div class="card">
+        <h3>Set Budget Limit</h3>
+        <form id="form-budget" class="mt-4">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="budget-category" required>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bills">Bills</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Health">Health</option>
+              <option value="Education">Education</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Limit Amount ($)</label>
+            <input type="number" id="budget-limit" step="0.01" min="0" required>
+          </div>
+          <div id="budget-error" class="error-msg"></div>
+          <button type="submit" class="btn btn-primary w-full">Set Budget</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Budget Overview</h3>
+        <div id="budget-list" class="mt-4">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/budget.js"></script>
+</body>
+</html>

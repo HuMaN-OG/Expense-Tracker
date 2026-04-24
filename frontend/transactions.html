@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description" content="Detailed transaction history with advanced filtering and search capabilities. Export your financial data to CSV for easy record keeping.">
+  <meta name="keywords" content="transaction history, expense search, financial export, CSV records, money tracking">
+  <meta name="view-transition" content="same-origin">
+  <title>Transactions History | ExpenseTracker</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💎</text></svg>">
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+<body class="bg-bg">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">ExpenseTracker</div>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html" class="active">Transactions</a>
+        <a href="budget.html">Budget</a>
+      </div>
+      <div class="nav-user">
+        <button id="theme-toggle"><span>☀️ Light</span></button>
+        <span id="user-greeting">Welcome!</span>
+        <button id="btn-logout" class="btn btn-outline btn-sm">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="card mb-4 filter-bar">
+      <div class="form-group-inline">
+        <label>Search:</label>
+        <input type="text" id="filter-search" placeholder="Keyword...">
+      </div>
+      <div class="form-group-inline">
+        <label>Type:</label>
+        <select id="filter-type">
+          <option value="All">All</option>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+      </div>
+      <div class="form-group-inline">
+        <label>Category:</label>
+        <select id="filter-category">
+          <option value="All">All Categories</option>
+          <option value="Food">Food</option>
+          <option value="Transport">Transport</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Bills">Bills</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Health">Health</option>
+          <option value="Education">Education</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group-inline">
+        <label>From:</label>
+        <input type="date" id="filter-start">
+      </div>
+      <div class="form-group-inline">
+        <label>To:</label>
+        <input type="date" id="filter-end">
+      </div>
+      <button id="btn-search" class="btn btn-primary">Search</button>
+    </div>
+
+    <div class="card">
+      <div class="flex-between mb-4">
+        <h3>All Transactions</h3>
+        <div>
+          <button id="btn-export" class="btn btn-outline" style="margin-right: 0.5rem;">📥 Export CSV</button>
+          <button id="btn-add-new" class="btn btn-primary">+ Add New</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Title</th>
+              <th>Category</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-list">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add/Edit Expense Modal -->
+  <div id="expense-modal" class="modal hidden">
+    <div class="modal-content card">
+      <div class="flex-between mb-4">
+        <h2 id="modal-title">Transaction</h2>
+        <button class="close-modal" aria-label="Close">&times;</button>
+      </div>
+      <form id="form-expense">
+        <input type="hidden" id="exp-id">
+        <div class="form-group">
+          <label>Type</label>
+          <select id="exp-type" required>
+            <option value="expense">Expense</option>
+            <option value="income">Income</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="exp-title" required>
+        </div>
+        <div class="form-group">
+          <label>Amount</label>
+          <input type="number" id="exp-amount" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="exp-category" required>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Health">Health</option>
+            <option value="Education">Education</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="exp-date" required>
+        </div>
+        <div class="form-group">
+          <label>Note (Optional)</label>
+          <textarea id="exp-note" rows="2" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: inherit;"></textarea>
+        </div>
+        <div id="exp-error" class="error-msg"></div>
+        <button type="submit" class="btn btn-primary w-full">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/transactions.js"></script>
+</body>
+</html>
