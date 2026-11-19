@@ -72,7 +72,10 @@ npx serve -l 3000 frontend
 *Access via `http://localhost:3000`*
 
 > [!IMPORTANT]
-> **Production Tip**: When deploying to a live server, update the `BASE_URL` constant in all `frontend/js/*.js` files to point to your production API URL.
+> **Production Deployment & API Configuration**:
+> - API Base URL is centralized in `frontend/js/config.js`. Set your verified backend domain there.
+> - **Health Check**: `GET /health` returns `200 OK` (`{"status": "ok", "database": "connected"}`) when MongoDB Atlas is connected, or `503 Service Unavailable` if MongoDB is unreachable.
+> - Required Render Environment Variables: `MONGO_URI` (MongoDB connection string) and `JWT_SECRET` (minimum 32-character secure secret). Never commit or expose these values.
 
 ---
 
@@ -80,6 +83,7 @@ npx serve -l 3000 frontend
 
 | Endpoint | Method | Description |
 | :--- | :--- | :--- |
+| `/health` | `GET` | Service & MongoDB connection health check |
 | `/api/auth/register` | `POST` | Create a new account |
 | `/api/auth/login` | `POST` | Authenticate and get JWT |
 | `/api/expenses` | `GET` | Fetch transactions with search/filter |

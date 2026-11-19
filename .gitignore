@@ -28,3 +28,5 @@ Thumbs.db
 # Project Specific
 frontend/node_modules/
 backend/node_modules/
+*.pptx
+*.pdf
