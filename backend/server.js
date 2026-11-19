@@ -7,7 +7,10 @@ const connectDB = require('./config/db');
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const corsOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',').map(s => s.trim())
+  : '*';
+app.use(cors({ origin: corsOrigins }));
 app.use(express.json());
 
 // Health is only "ok" when MongoDB is connected.

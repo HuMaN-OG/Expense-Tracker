@@ -62,7 +62,7 @@ exports.updateExpense = async (req, res) => {
     const expense = await Expense.findOneAndUpdate(
       { _id: id, userId: req.user.userId },
       req.body,
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
 
     if (!expense) {

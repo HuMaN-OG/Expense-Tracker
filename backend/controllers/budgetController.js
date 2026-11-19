@@ -31,7 +31,7 @@ exports.setBudget = async (req, res) => {
     const update = { limit };
 
     const budget = await Budget.findOneAndUpdate(filter, update, {
-      new: true,
+      returnDocument: 'after',
       upsert: true,
       runValidators: true
     });
